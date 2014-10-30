@@ -13,13 +13,13 @@ source setup.sh
 That's it!
 This ends with an error, which has further no effect.
 
-# How to set the environment
+## How to set the environment
 
 ```
 source UHHpMSSM/setenv.sh
 ```
 
-# How to write analyzers
+## How to write analyzers
 
 Ntuple analyzers are located in $MYPROJECTDIR/analyzers.
 
@@ -44,4 +44,23 @@ Use it to test your analyzer.
 ```
 ./myAnalyzer filelist.txt test.root
 ```
+
+## Prepare to run over all background files
+
+Check what's inside $MYPROJECTDIR/samples/.txt
+On each line you find a directory on dcache and before that, a nickname for that directory.
+Each directory contains the files from a particular background sample.
+Check the contact of one of the directories
+```
+ls ...
+```
+Note that you don't need the full url of the directory to list it.
+Also note that you can also add normal directories to this list.
+
+Then create for each directory a list of files inside
+```
+updatefilelist.py
+```
+
+
  
