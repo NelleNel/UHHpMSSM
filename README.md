@@ -106,6 +106,10 @@ Check the documentation of grid-control here: https://ekptrac.physik.uni-karlsru
 Usually you want to change memory and cpu requirements in the grid-control cfg file (job.cfg) to fit your needs.
 When you submit for the first time you want to submit just one job and therefore change the number of jobs to be submit to 1.
 
+## How to draw plots
+
+For a tutorial see the README file in software/VBF-LS-tau-tools/drawHist/tutorial/
+
 ## Consider moving your data directory to dust 
 
 If you run out of storage on afs...
