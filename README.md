@@ -1,7 +1,7 @@
 UHHpMSSM
 ========
 
-# Installation
+## Installation
 
 Get the setup script and run it
 
@@ -45,7 +45,7 @@ Use it to test your analyzer.
 ./myAnalyzer filelist.txt test.root
 ```
 
-## Prepare to run over all background files
+## Prepare to run your analyzers over all samples
 
 Check what's inside $MYPROJECTDIR/samples/.txt
 On each line you find a directory on dcache and before that, a nickname for that directory.
@@ -60,6 +60,29 @@ Also note that you can also add normal directories to this list.
 Then create for each directory a list of files inside
 ```
 updatefilelist.py
+```
+Now have a look at the files under $MYPROJECTDIR/data/filelists/....txt
+
+Create a working directory on 'dust' and create a link in $MYPROJECTDIR
+```
+mkdir -p /nfs/dust/cms/user/$USER/UHHpMSSM/workdir
+ln -s /nfs/dust/cms/user/$USER/UHHpMSSM/workdir $MYPROJECTDIR/workdir
+```
+On dust you have more storage, much more, than on afs, but nothing is backed up.
+If you don't have access to dust yet, just use your afs directory for now.
+
+## Run your analyzers over the event samples
+
+
+## Consider moving your data directory to dust 
+
+If you run out of storage on afs...
+
+```
+mkdir -p /nfs/dust/cms/user/$USER/UHHpMSSM/data
+mv $MYPROJECTDIR/data/* /nfs/dust/cms/user/$USER/UHHpMSSM/data
+rm -rf $MYPROJECTDIR/data
+ln -s data
 ```
 
 
