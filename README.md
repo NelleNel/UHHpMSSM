@@ -73,6 +73,38 @@ If you don't have access to dust yet, just use your afs directory for now.
 
 ## Run your analyzers over the event samples
 
+Create a subdirectory in your workdir
+```
+cd $MYPROJECT/workdir
+mkdir test
+cd test
+```
+
+If you'd like to run with your "myAnalyzer" over the samples sample1,sample2,sample3,
+prepare that like this
+```
+run_analyzer_batch.py myAnalyzer sample1,sample2,sample3
+```
+Have a look at the new files in the directory.
+Also check the options of run_analyzer_batch.py with the --help option.
+By default run_analyzer_batch.py will prepare such that you have one batch job per input file.
+That can lead to huge numbers of jobs, therefore use the option --merge N,
+to process N files per job. With this option you will receive one output file per root file in the samples.
+If you'd like to have just one output file per job, use in addition the option --fullmerge.
+So, the usually recommended way to prepare your batch jobs is
+```
+run_analyzer_batch.py myAnalyzer sample1,sample2,sample3 -merge N --fullmerge
+```
+typical values for N are 20-50.
+
+Then, submit to the grid with grid-control:
+```
+go.py -icG job.cfg
+```
+Check the documentation of grid-control here: https://ekptrac.physik.uni-karlsruhe.de/trac/grid-control
+
+Usually you want to change memory and cpu requirements in the grid-control cfg file (job.cfg) to fit your needs.
+When you submit for the first time you want to submit just one job and therefore change the number of jobs to be submit to 1.
 
 ## Consider moving your data directory to dust 
 
