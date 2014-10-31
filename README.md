@@ -1,6 +1,11 @@
 UHHpMSSM
 ========
 
+## Disclaimer
+
+Probably not all of this works as expected.
+Please report any malfunction you observe.
+
 ## Requirements
 
 Use this recipe on one of the slc6 machines, e.g. naf-uhhcms06.desy.de
@@ -134,6 +139,48 @@ mv $MYPROJECTDIR/data/* /nfs/dust/cms/user/$USER/UHHpMSSM/data
 rm -rf $MYPROJECTDIR/data
 ln -s data
 ```
+
+## How to propagate changes to and from the central repository
+
+
+get other peoples changes
+```
+cd $MYPROJECTDIR/analyzers
+git pull
+```
+
+to put your changes in the repository
+```
+cd $MYPROJECTDIR/analyzers
+git pull       # always first synchronise your area with the central repository
+git add <A FILE>
+git add <AN OTHER FILE>
+...
+git commit -m "<SOME EXPLANATION>"
+git push
+```
+
+if git push leads to an error like
+```
+error: The requested URL returned error: 403 Forbidden while accessing
+```
+edit the git configuration
+```
+cd $MYPROJECTDIR
+emacs -nw .git/config
+```
+change in the section [remote "origin"] the url to something like
+```
+url = ssh://git@github.com/lveldere/UHHpMSSM.git
+```
+(might be you need your own github username there)
+
+for more info, see the git and github manuals
+
+## Topics to be covered later
+
+* how to generate events with pythia
+* how to simulate events with delphes
 
 
  
