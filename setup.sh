@@ -51,7 +51,7 @@ export CMSSW_FWLITE_INCLUDE_PATH=$temp_CMSSW_FWLITE_INCLUDE_PATH
 # install HepMC package
 cd $swdir
 hepmc=HepMC-2.06.09 
-mkidr $hepmc
+mkdir $hepmc
 mkdir temp
 cd temp
 wget http://lcgapp.cern.ch/project/simu/HepMC/download/$hepmc.tar.gz
