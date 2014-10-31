@@ -38,15 +38,7 @@ wget http://cp3.irmp.ucl.ac.be/downloads/$delphes.tar.gz
 tar -xzf $delphes.tar.gz
 rm $delphes.tar.gz
 cd $delphes
-# do some crazy shit to get delphes compiled
-sed -i 's/Pythia.h/Pythia8\/Pythia.h/g' modules/PileUpMergerPythia8.cc
-sed -i 's/Pythia.h/Pythia8\/Pythia.h/g' readers/DelphesPythia8.cpp
-sed -i 's/lib -lpythia8/lib\/archive -lpythia8/' Makefile
-sed -i 's/-lLHAPDF/-llhapdfdummy/' Makefile
-temp_CMSSW_FWLITE_INCLUDE_PATH=$CMSSW_FWLITE_INCLUDE_PATH
-unset CMSSW_FWLITE_INCLUDE_PATH
 make -j 8
-export CMSSW_FWLITE_INCLUDE_PATH=$temp_CMSSW_FWLITE_INCLUDE_PATH
 
 # install HepMC package
 cd $swdir
@@ -78,7 +70,6 @@ make -j 8
 make install
 cd $swdir
 rm -rf temp
-export PYTHIA8=$swdir/$pythia
 
 # get back
 cd $mylocation
