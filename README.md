@@ -87,17 +87,17 @@ cd test
 If you'd like to run with your "myAnalyzer" over the samples sample1,sample2,sample3,
 prepare that like this
 ```
-run_analyzer_batch.py myAnalyzer sample1,sample2,sample3
+runanalyzer_batch.py myAnalyzer sample1,sample2,sample3
 ```
 Have a look at the new files in the directory.
-Also check the options of run_analyzer_batch.py with the --help option.
-By default run_analyzer_batch.py will prepare such that you have one batch job per input file.
+Also check the options of runanalyzer_batch.py with the --help option.
+By default runanalyzer_batch.py will prepare such that you have one batch job per input file.
 That can lead to huge numbers of jobs, therefore use the option --merge N,
 to process N files per job. With this option you will receive one output file per root file in the samples.
 If you'd like to have just one output file per job, use in addition the option --fullmerge.
 So, the usually recommended way to prepare your batch jobs is
 ```
-run_analyzer_batch.py myAnalyzer sample1,sample2,sample3 -merge N --fullmerge
+runanalyzer_batch.py myAnalyzer sample1,sample2,sample3 -merge N --fullmerge
 ```
 typical values for N are 20-50.
 
