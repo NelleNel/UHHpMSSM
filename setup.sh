@@ -1,5 +1,11 @@
-# where am I?
-mylocation=$PWD
+# go to home
+cd $HOME
+
+# make sure nothin is there yet
+if [ -d UHHpMSSM ]; then
+  echo "ERROR: the package UHHpMSSM already exist in $HOME"
+  return
+fi
 
 # get the main analysis repository
 git clone https://github.com/lveldere/UHHpMSSM
@@ -10,22 +16,37 @@ maindir=$mylocation/UHHpMSSM
 swdir=$maindir/software
 mkdir $swdir
 
-# get analysis scripts (used for batch submission)
+# get analysis scripts (to automize submission of analysis jobs with grid-control)
 cd $swdir
 git clone https://github.com/lveldere/anascripts
 
 # get the VBF analysis tools (used for histogram drawing)
 git clone https://github.com/lveldere/VBF-LS-tau-tools
 
-# setup CMSSW environment for root
+# install grid-contrl (for job-submission to the grid)
+svn co https://ekptrac.physik.uni-karlsruhe.de/svn/grid-control/tags/stable/grid-control
+
+# setup root environment
 cd $swdir
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 module use -a /afs/desy.de/group/cms/modulefiles/
-module load cmssw
-cmsrel CMSSW_7_2_0
-cd CMSSW_7_2_0/src
-cmsenv
+module load root/5.34
+
+# get delphes
+cd $swdir
+delphes=Delphes-3.1.2
+wget http://cp3.irmp.ucl.ac.be/downloads/$delphes.tar.gz
+tar -xzf $delphes.tar.gz
+rm $delphes.tar.gz
+cd $delphes
+# do some crazy shit to get delphes compiled
+sed -i 's/Pythia.h/Pythia8\/Pythia.h/g' modules/PileUpMergerPythia8.cc
+sed -i 's/Pythia.h/Pythia8\/Pythia.h/g' readers/DelphesPythia8.cpp
+sed -i 's/lib -lpythia8/lib\/archive -lpythia8/' Makefile
+sed -i 's/-lLHAPDF/-llhapdfdummy/' Makefile
+temp_CMSSW_FWLITE_INCLUDE_PATH=$CMSSW_FWLITE_INCLUDE_PATH
+unset CMSSW_FWLITE_INCLUDE_PATH
+make -j 8
+export CMSSW_FWLITE_INCLUDE_PATH=$temp_CMSSW_FWLITE_INCLUDE_PATH
 
 # install HepMC package
 cd $swdir
@@ -58,23 +79,6 @@ make install
 cd $swdir
 rm -rf temp
 export PYTHIA8=$swdir/$pythia
-
-# get delphes
-cd $swdir
-delphes=Delphes-3.1.2
-wget http://cp3.irmp.ucl.ac.be/downloads/$delphes.tar.gz
-tar -xzf $delphes.tar.gz
-rm $delphes.tar.gz
-cd $delphes
-# do some crazy shit to get delphes compiled
-sed -i 's/Pythia.h/Pythia8\/Pythia.h/g' modules/PileUpMergerPythia8.cc
-sed -i 's/Pythia.h/Pythia8\/Pythia.h/g' readers/DelphesPythia8.cpp
-sed -i 's/lib -lpythia8/lib\/archive -lpythia8/' Makefile
-sed -i 's/-lLHAPDF/-llhapdfdummy/' Makefile
-temp_CMSSW_FWLITE_INCLUDE_PATH=$CMSSW_FWLITE_INCLUDE_PATH
-unset CMSSW_FWLITE_INCLUDE_PATH
-make -j 8
-export CMSSW_FWLITE_INCLUDE_PATH=$temp_CMSSW_FWLITE_INCLUDE_PATH
 
 # get back
 cd $mylocation
