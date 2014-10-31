@@ -10,7 +10,7 @@ fi
 # get the main analysis repository
 git clone https://github.com/lveldere/UHHpMSSM
 cd UHHpMSSM
-maindir=$mylocation/UHHpMSSM
+maindir=$PWD
 
 # create a software directory
 swdir=$maindir/software
