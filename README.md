@@ -1,6 +1,10 @@
 UHHpMSSM
 ========
 
+## Requirements
+
+Use this recipe on one of the slc6 machines, e.g. naf-uhhcms06.desy.de
+
 ## Installation
 
 Get the setup script and run it
