@@ -30,7 +30,7 @@ Ntuple analyzers are located in $MYPROJECTDIR/analyzers.
 To enable submission of analyzers to the batch system,
 they must be written in such a way that they can be run with two arguments:
 ```
-./myAnalyzer filelist.txt outputFile.root
+./analyzer.sh arg1 arg2
 ```
 Where arg1 is a txt file with a list of paths to the root files with the ntuples to be analyzed (one file per line),
 and where arg2 is the path to the output ROOT file of the analyzer.
@@ -46,7 +46,7 @@ and make sure that the first bin of the histogram has a value equal to the numbe
 The analyzer directory contains an example filelist.
 Use it to test your analyzer.
 ```
-./myAnalyzer filelist.txt test.root
+./analyzer.sh filelist.txt test.root
 ```
 
 ## Prepare to run your analyzers over all samples
