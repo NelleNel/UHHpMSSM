@@ -1,0 +1,2 @@
+dcap://dcache-cms-dcap.desy.de:22125//pnfs/desy.de/cms/tier2/store/user/csander/Snowmass/tj-4p-500-1000-v1510_14TEV/tj-4p-500-1000-v1510_14TEV_50PileUp_112253942.root
+

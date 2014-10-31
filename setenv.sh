@@ -12,6 +12,7 @@ module load root/5.34
 export MYPROJECT=UHHpMSSM
 export MYPROJECTDIR=$HOME/$MYPROJECT
 export SWDIR=$MYPROJECTDIR/software
+export ANASCRIPTS=$SWDIR/anascripts
 export PATH=$PATH:$ANASCRIPTS:$MYPROJECTDIR/scripts:$SWDIR/grid-control
 export PYTHONPATH=$PYTHONPATH:$ANASCRIPTS
 export ENVSCRIPT=$MYPROJECTDIR/setenv.sh
