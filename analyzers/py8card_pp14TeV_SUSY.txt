@@ -1,0 +1,10 @@
+! first beam, p = 2212, pbar = -2212
+Beams:idA = 2212
+! second beam, p = 2212, pbar = -2212
+Beams:idB = 2212
+! CM energy of collision
+Beams:eCM = 14000.
+! number of events to generate
+Main:numberOfEvents = 7
+! include all SUSY processes
+SUSY:all = on

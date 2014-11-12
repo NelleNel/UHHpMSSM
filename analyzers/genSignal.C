@@ -8,11 +8,13 @@ using namespace Pythia8;
 int main(int argc,char * argv[]){
  
   if(!argc==2){
-    cout << "expecting exactly 2 arguments: <path to intput slha file> and <path to output file>" << std::endl;
+    cout << "expecting exactly 3 arguments: <path to pythia8 card> <path to intput slha file> <path to output file>" << std::endl;
     exit(1);
   }
-  string slhafile = argv[1];
-  string ofile = argv[2];
+  
+  string cardfile = argv[1];
+  string slhafile = argv[2];
+  string ofile = argv[3];
 
   // Interface for conversion from Pythia8::Event to HepMC event.
   HepMC::Pythia8ToHepMC ToHepMC;
@@ -22,19 +24,19 @@ int main(int argc,char * argv[]){
 
   // Initialization
   Pythia pythia;
-  
+
   // swich on all susy production modes
-  pythia.readString("SUSY:all = on");
+  pythia.readFile(cardfile);
   // read from the slha file
   pythia.readString((string("SLHA:file = ") + slhafile).c_str());
   // set the random seed based on the clock time
   // => different events every time you run this code
   pythia.rndm.init(0); 
-
-  pythia.init(2212, 2212, 14000.);
-
-  int nevents = atoi(getenv("EVENTS_PER_SAMPLE"));
   
+  pythia.init();
+    
+  int nevents = pythia.mode("Main:numberOfEvents");
+    
   for (int iEvent=0; iEvent<nevents; iEvent++){
     pythia.next();
 

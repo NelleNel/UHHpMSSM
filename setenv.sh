@@ -24,4 +24,3 @@ export ENVSCRIPT=$MYPROJECTDIR/setenv.sh
 # to run pythia
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SWDIR/HepMC-2.06.09/lib/
 export PYTHIA8DATA=$SWDIR/pythia8186/xmldoc
-export EVENTS_PER_SAMPLE=1000
