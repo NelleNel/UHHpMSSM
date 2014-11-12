@@ -162,21 +162,31 @@ source makeGenSignal.sh
 ```
 now you can generate events as follows
 ```
-./genSignal <path to slha file> <path to output hepmc file>
+./genSignal <path to pythia8 configuration card> <path to slha file> <path to output hepmc file>
 ```
-You can steer the number of events through the environmental variable EVENTS_PER_SAMPLE (default=1000).
 
-For testing, set this number e.g. to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
+Two pythi8 configuration cards are provided:  py8card_pp8TeV_SUSY.txt and py8card_pp14TeV_SUSY.txt
+to generate SUSY events for pp collisions with center of mass energies of respectively 8 and 14 TeV.
+Have a look in one of the files and notice you can steer the number of events to be produced through the variable Main:numberOfEvents and the center of mass energy through the variable Beams:eCM.
+
+For testing, set in py8card_pp8TeV_SUSY.txt the number of events to generate to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
 ```
 export EVENTS_PER_JOB=7
-./genSimSignal mb_250__mz2_150__edge70.slha test.hepmc
+./genSignal py8card_pp8TeV_SUSY.txt mb_250__mz2_150__edge70.slha test.hepmc
 ```
 You should see a new file test.hepmc with generated events stored in hepmc format.
 
-Then, run in addition the detector simulation
+Two scripts are provided to run the event generation and the detector simulation one after another: genSimSignal_8TeV.sh and genSimSignal_14TeV.sh for sparticle production in respectively 8 TeV and 14 TeV pp events.
+
+Run Them as follows: 
 ```
-./genSignal mb_250__mz2_150__edge70.slha test
+./genSimSignal_*TeV.sh <path to slha file> <path to output file w/o extension>
 ```
+e.g.
+```
+./genSimSignal_8TeV.sh mb_250__mz2_150__edge70.slha test
+```
+
 Now you should see two new files, test.hepmc and test.root, with respectively the generated events in hepmc format and the simulated events in Delphes tree format.
 
 ## How to propagate changes to and from the central repository
