@@ -169,7 +169,7 @@ You can steer the number of events through the environmental variable EVENTS_PER
 For testing, set this number e.g. to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
 ```
 export EVENTS_PER_JOB=7
-./genSignal mb_250__mz2_150__edge70.slha test.hepmc
+./genSimSignal mb_250__mz2_150__edge70.slha test.hepmc
 ```
 You should see a new file test.hepmc with generated events stored in hepmc format.
 
