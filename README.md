@@ -151,7 +151,7 @@ ln -s data
 
 ## Generating and simulating events
 
-"Generation of events" = generate the particles with pythia8.1
+"Generation of events" = simulate proton-proton collisions w/o detector, using pythia8.1
 
 "Simulation of events" = simulate the detector with Delphes3
 
