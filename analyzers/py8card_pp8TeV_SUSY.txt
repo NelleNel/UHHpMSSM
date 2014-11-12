@@ -5,6 +5,6 @@ Beams:idB = 2212
 ! CM energy of collision
 Beams:eCM = 8000.
 ! number of events to generate
-Main:numberOfEvents = 7
+Main:numberOfEvents = 1000
 ! include all SUSY processes
 SUSY:all = on
