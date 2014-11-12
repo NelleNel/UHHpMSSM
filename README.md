@@ -4,7 +4,7 @@ UHHpMSSM
 ## FIX FIX FIX
 get the latest bits of code and fix the pythia installation
 ```
-cd UHHpMSSM
+cd $HOME/UHHpMSSM
 git pull
 source setup_fixpythia8.sh
 ```
