@@ -164,7 +164,7 @@ now you can generate events as follows
 ```
 ./genSignal <path to slha file> <path to output hepmc file>
 ```
-You can steer the number of events through the environmental variable EVENTS_PER_JOB (default=1000).
+You can steer the number of events through the environmental variable EVENTS_PER_SAMPLE (default=1000).
 
 For testing, set this number e.g. to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
 ```
