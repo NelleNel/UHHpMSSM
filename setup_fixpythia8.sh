@@ -4,6 +4,7 @@ source UHHpMSSM/setenv.sh
 cd $SWDIR
 export swdir=$SWDIR
 pythia=pythia8186
+hepmc=HepMC-2.06.09 
 rm -rf $pythia
 rm -rf $pythia.tgz
 rm -rf temp
