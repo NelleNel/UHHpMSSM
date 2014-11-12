@@ -173,14 +173,50 @@ change in the section [remote "origin"] the url to something like
 ```
 url = ssh://git@github.com/lveldere/UHHpMSSM.git
 ```
-(might be you need your own github username there)
+(it might be you need your own github username there)
 
 for more info, see the git and github manuals
 
-## Topics to be covered later
+## Generating and simulating events
 
-* how to generate events with pythia
-* how to simulate events with delphes
+"Generation of events" = generate the particles with pythia8.1
+
+"Simulation of events" = simulate the detector with Delphes3
+
+cd into the analyzers directory and compile the code for event generation
+```
+cd $MYPROJECTDIR/analyzers
+source makeGenSignal.sh
+```
+now you can generate events as follows
+```
+./genSignal <path to slha file> <path to output hepmc file>
+```
+You can steer the number of events through the environmental variable EVENTS_PER_JOB (default=1000).
+
+For testing, set this number e.g. to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
+```
+export EVENTS_PER_JOB=7
+./genSignal mb_250__mz2_150__edge70.slha test.hepmc
+```
+You should see a new file test.hepmc with generated events stored in hepmc format.
+
+Then, run in addition the detector simulation
+```
+./genSignal mb_250__mz2_150__edge70.slha test
+```
+Now you should see two new files, test.hepmc and test.root, with respectively the generated events in hepmc format and the simulated events in Delphes tree format.
+
+
+
+
+
+
+
+
+
+
+
 
 
  
