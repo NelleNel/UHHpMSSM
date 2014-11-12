@@ -171,7 +171,6 @@ Have a look in one of the files and notice you can steer the number of events to
 
 For testing, set in py8card_pp8TeV_SUSY.txt the number of events to generate to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
 ```
-export EVENTS_PER_JOB=7
 ./genSignal py8card_pp8TeV_SUSY.txt mb_250__mz2_150__edge70.slha test.hepmc
 ```
 You should see a new file test.hepmc with generated events stored in hepmc format.
