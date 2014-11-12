@@ -1,6 +1,14 @@
 UHHpMSSM
 ========
 
+## FIX FIX FIX
+get the latest bits of code and fix the pythia installation
+```
+cd UHHpMSSM
+git pull
+source setup_fixpythia8.sh
+```
+
 ## Disclaimer
 
 Probably not all of this works as expected.
@@ -140,6 +148,37 @@ rm -rf $MYPROJECTDIR/data
 ln -s data
 ```
 
+
+## Generating and simulating events
+
+"Generation of events" = generate the particles with pythia8.1
+
+"Simulation of events" = simulate the detector with Delphes3
+
+cd into the analyzers directory and compile the code for event generation
+```
+cd $MYPROJECTDIR/analyzers
+source makeGenSignal.sh
+```
+now you can generate events as follows
+```
+./genSignal <path to slha file> <path to output hepmc file>
+```
+You can steer the number of events through the environmental variable EVENTS_PER_JOB (default=1000).
+
+For testing, set this number e.g. to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
+```
+export EVENTS_PER_JOB=7
+./genSignal mb_250__mz2_150__edge70.slha test.hepmc
+```
+You should see a new file test.hepmc with generated events stored in hepmc format.
+
+Then, run in addition the detector simulation
+```
+./genSignal mb_250__mz2_150__edge70.slha test
+```
+Now you should see two new files, test.hepmc and test.root, with respectively the generated events in hepmc format and the simulated events in Delphes tree format.
+
 ## How to propagate changes to and from the central repository
 
 
@@ -177,35 +216,9 @@ url = ssh://git@github.com/lveldere/UHHpMSSM.git
 
 for more info, see the git and github manuals
 
-## Generating and simulating events
+# To be added
 
-"Generation of events" = generate the particles with pythia8.1
-
-"Simulation of events" = simulate the detector with Delphes3
-
-cd into the analyzers directory and compile the code for event generation
-```
-cd $MYPROJECTDIR/analyzers
-source makeGenSignal.sh
-```
-now you can generate events as follows
-```
-./genSignal <path to slha file> <path to output hepmc file>
-```
-You can steer the number of events through the environmental variable EVENTS_PER_JOB (default=1000).
-
-For testing, set this number e.g. to 7, and run on the example slha file mb_250__mz2_150__edge70.slha
-```
-export EVENTS_PER_JOB=7
-./genSignal mb_250__mz2_150__edge70.slha test.hepmc
-```
-You should see a new file test.hepmc with generated events stored in hepmc format.
-
-Then, run in addition the detector simulation
-```
-./genSignal mb_250__mz2_150__edge70.slha test
-```
-Now you should see two new files, test.hepmc and test.root, with respectively the generated events in hepmc format and the simulated events in Delphes tree format.
+How to generate events for a whole bunch of slha files.
 
 
 
