@@ -65,7 +65,7 @@ cd temp
 wget http://home.thep.lu.se/~torbjorn/pythia8/$pythia.tgz
 tar -xzf $pythia.tgz
 cd $pythia
-./configure --prefix=$swdir/$pythia --with-hepmc2=$swdir/$hepmc
+./configure --prefix=$swdir/$pythia --with-hepmc=$swdir/$hepmc
 make -j 8
 make install
 cd $swdir
