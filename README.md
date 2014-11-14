@@ -1,13 +1,31 @@
 UHHpMSSM
 ========
 
-## FIX FIX FIX
-get the latest bits of code and fix the pythia installation
+## News
+
+### 12 Nov 14: fix the pythia installation
+
+fix the pythia installation
 ```
 cd $HOME/UHHpMSSM
 git pull
 source setup_fixpythia8.sh
 ```
+
+### 14 Nov 14: pull in the ability to generate signal events for multiple slha files over naf
+
+```
+cd $HOME/UHHpMSSM
+git pull
+cd analyzers
+source makeGenSignal.sh
+updatefilelist.py
+```
+
+The way to run genSimSignal_*TeV.sh has slightly changed,
+see section "Generating and simulating events"
+
+Lear how to use the new tools in the section "Generating and simulating events"
 
 ## Disclaimer
 
@@ -179,14 +197,66 @@ Two scripts are provided to run the event generation and the detector simulation
 
 Run Them as follows: 
 ```
-./genSimSignal_*TeV.sh <path to slha file> <path to output file w/o extension>
+./genSimSignal_*TeV.sh <path to slha file> <path to output root file>
 ```
 e.g.
 ```
-./genSimSignal_8TeV.sh mb_250__mz2_150__edge70.slha test
+./genSimSignal_8TeV.sh mb_250__mz2_150__edge70.slha test.root
 ```
 
-Now you should see two new files, test.hepmc and test.root, with respectively the generated events in hepmc format and the simulated events in Delphes tree format.
+Now you should see two new files, test.root.hepmc and test.root, with respectively the generated events in hepmc format and the simulated events in Delphes tree format.
+
+### Mass generation of signal events for on or multiple slha files
+
+Say you have one or more slha files for which you want to generate signal events.
+Put your slha files in a directory, and register this directory as a sample.
+There is an example directory /nfs/dust/cms/user/lveldere/UHHpMSSM/data/slha/T6bbEdge70/
+and the procedure is illustrated with that directory.
+
+First add a line to the file $MYPROJECTDIR/data/samples/slha.txt.
+The line for our example is actually already there, check it out
+```
+$ more $MYPROJECTDIR/data/samples/slha.txt
+T6bbEdge70 /nfs/dust/cms/user/lveldere/UHHpMSSM/data/slha/T6bbEdge70
+```
+The first element is the nickname, the next the path to the directory.
+
+Then update the filelists, and check out the result
+```
+updatefilelists.py
+more $MYPROJECTDIR/data/filelists/slha/T6bbEdge70.txt
+```
+The last command should list you all slha files in the T6bbEdge70 directory.
+
+Then, create a subdirectory in the workdir and prepare to run over all slha files
+```
+cd $MYPROJECTDIR/workdir
+mkdir testsignal
+cd testsignal
+runanalyzer_batch.py genSimSignal_8TeV.sh slha/T6bbEdge70 --repeat 10
+```
+This last command prepares a configuration to run on the naf cluster.
+The first argument defines the script inside $MYPROJECTDIR/analyzers to be used for generation.
+The second argument defines which slha files to process.
+The third argument defines how many jobs per slha file will be submitted.
+The latter argument allows you to parallelize the event generation.
+Note that the number of events  per job is defined in the pythia8 card used by the generation script,
+in this case $MYPROJECTDIR/analyzers/py8card_pp8TeV_SUSY.txt.
+
+Then, run over naf
+```
+go.py -icG job.cfg
+```
+
+When done, check the results
+```
+ls results/genSimSignal_8TeV.sh/slha/T6bbEdge70/
+```
+
+You will find .root files with the Delphes output,
+and .root.hepmc files with the pythia8 output.
+The slha file name is contained in the output filenames.
+The job number is included in the end of the output filenames, in order to have unique output file names. 
 
 ## How to propagate changes to and from the central repository
 
@@ -225,9 +295,6 @@ url = ssh://git@github.com/lveldere/UHHpMSSM.git
 
 for more info, see the git and github manuals
 
-# To be added
-
-How to generate events for a whole bunch of slha files.
 
 
 
