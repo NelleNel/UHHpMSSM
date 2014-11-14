@@ -25,7 +25,7 @@ updatefilelist.py
 The way to run genSimSignal_*TeV.sh has slightly changed,
 see section "Generating and simulating events"
 
-Lear how to use the new tools in the section "Generating and simulating events"
+Learn how to use the new tools in the section "Generating and simulating events"
 
 ## Disclaimer
 
