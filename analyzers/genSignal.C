@@ -2,6 +2,8 @@
 #include "Pythia8/Pythia8ToHepMC.h"
 #include "HepMC/GenEvent.h"
 #include "HepMC/IO_GenEvent.h"
+#include "fstream"
+#include "iostream"
 
 using namespace Pythia8;
 
@@ -20,6 +22,7 @@ int main(int argc,char * argv[]){
   HepMC::Pythia8ToHepMC ToHepMC;
 
   // Specify file where HepMC events will be stored.
+  cout << "writing hepmc events to: " << ofile << endl;
   HepMC::IO_GenEvent ascii_io(ofile.c_str(), std::ios::out);
 
   // Initialization
@@ -28,12 +31,24 @@ int main(int argc,char * argv[]){
   // swich on all susy production modes
   pythia.readFile(cardfile);
   // read from the slha file
+  cout << "reading slha file " << slhafile << endl;
   pythia.readString((string("SLHA:file = ") + slhafile).c_str());
   // set the random seed based on the clock time
   // => different events every time you run this code
   pythia.rndm.init(0); 
   
-  pythia.init();
+  
+  bool init_OK = pythia.init();
+  // second attempt, not very elegant
+  if(!init_OK){
+    std::ifstream file(slhafile.c_str());
+    std::getline(file, slhafile);
+    int pos = slhafile.find("file:");
+    if(pos != string::npos)
+      slhafile = slhafile.substr(5);
+    pythia.readString((string("SLHA:file = ") + slhafile).c_str());
+    pythia.init();
+  }
     
   int nevents = pythia.mode("Main:numberOfEvents");
     

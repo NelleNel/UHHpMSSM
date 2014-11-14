@@ -10,6 +10,7 @@ module ()
     eval `/usr/bin/modulecmd bash $*`
 }
 module use -a /afs/desy.de/group/cms/modulefiles/
+module use -a /etc/modulefiles/
 module load root/5.34
 
 # variables used for job distribution
