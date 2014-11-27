@@ -1,6 +1,11 @@
 UHHpMSSM
 ========
 
+## Ask for help in case of naf problems
+
+Please systematically warn the naf-helpdesk in case naf causes problems:
+naf-helpdesk__AT__desy.de
+
 ## News
 
 
