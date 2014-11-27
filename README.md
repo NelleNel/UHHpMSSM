@@ -3,13 +3,21 @@ UHHpMSSM
 
 ## News
 
-### 12 Nov 14: fix the pythia installation
 
-fix the pythia installation
+### 27 Nov 14: Allow grid-control to recognise failures during the setup of the root environment
+
 ```
-cd $HOME/UHHpMSSM
+cd $HOME/UHHpMSSM/
 git pull
-source setup_fixpythia8.sh
+```
+
+The environment setup will now crash with exit code 666 if the root environment could not be set correctly.
+
+### 27 Nov 14: fix to previous news item
+
+```
+cd $HOME/UHHpMSSM/software/anascripts
+git pull
 ```
 
 ### 14 Nov 14: pull in the ability to generate signal events for multiple slha files over naf
@@ -26,6 +34,15 @@ The way to run genSimSignal_*TeV.sh has slightly changed,
 see section "Generating and simulating events"
 
 Learn how to use the new tools in the section "Generating and simulating events"
+
+### 12 Nov 14: fix the pythia installation
+
+fix the pythia installation
+```
+cd $HOME/UHHpMSSM
+git pull
+source setup_fixpythia8.sh
+```
 
 ## Disclaimer
 
