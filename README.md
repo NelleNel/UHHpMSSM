@@ -8,7 +8,7 @@ naf-helpdesk__AT__desy.de
 
 ## News
 
-### 27 Nov 14: add Denis' script to hadd on the subdirectories of a given directory
+### 27 Nov 14: add Denis' script to apply hadd on the content of the subdirectories of a given directory
 
 ```
 cd $HOME/UHHpMSSM/software/anascripts
