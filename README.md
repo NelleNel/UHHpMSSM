@@ -8,6 +8,15 @@ naf-helpdesk__AT__desy.de
 
 ## News
 
+### 27 Nov 14: add drawHist tools to the path
+
+```
+cd $HOME/UHHpMSSM/
+git pull
+source setenv.sh
+```
+
+Now all drawHist tools (drawHist.py, weightHist.py) are available in whatever directory you are
 
 ### 27 Nov 14: Allow grid-control to recognise failures during the setup of the root environment
 
