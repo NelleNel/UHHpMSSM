@@ -19,7 +19,7 @@ export MYPROJECT=UHHpMSSM
 export MYPROJECTDIR=$HOME/$MYPROJECT
 export SWDIR=$MYPROJECTDIR/software
 export ANASCRIPTS=$SWDIR/anascripts
-export PATH=$PATH:$ANASCRIPTS:$MYPROJECTDIR/scripts:$SWDIR/grid-control
+export PATH=$PATH:$ANASCRIPTS:$MYPROJECTDIR/scripts:$SWDIR/grid-control:$SWDIR/VBF-LS-tau-tools/drawHist/
 export PYTHONPATH=$PYTHONPATH:$ANASCRIPTS
 export ENVSCRIPT=$MYPROJECTDIR/setenv.sh
 
