@@ -317,6 +317,19 @@ url = ssh://git@github.com/lveldere/UHHpMSSM.git
 
 for more info, see the git and github manuals
 
+## How to make your code produce an error that can be catched by grid-control
+
+In the script to be run by grid-control.
+
+```
+./YourCommand || exit 666
+```
+
+Will cause an error to be trown with code 666 in case YourCommand fails.
+Grid-control will recognise this error and flag the job as unsuccessful.
+
+
+
 
 
 
