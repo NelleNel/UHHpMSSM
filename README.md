@@ -8,6 +8,15 @@ naf-helpdesk__AT__desy.de
 
 ## News
 
+### 27 Nov 14: add Denis' script to hadd on the subdirectories of a given directory
+
+```
+cd $HOME/UHHpMSSM/software/anascripts
+git pull
+```
+see "how to merge histograms per sample"
+
+
 ### 27 Nov 14: add drawHist tools to the path
 
 ```
@@ -176,11 +185,14 @@ When jobs are done, find your output files in the subdirectories of the results 
 
 ## How to merge output files to one file per sample
 
-use the ROOT command hadd
+Say the directory IDIR has several subdirectories each containting root files
+```
+multiHadd --idir IDIR --odir ODIR
+```
+will write for each subdirectory in IDIR a root file into ODIR 
+that contains the merged content of the root files in the subdirectory.
 
-```
-hadd mergedFile.root path/to/files/*.root 
-```
+This script was kindly provided by Denis
 
 ## How to draw plots
 
