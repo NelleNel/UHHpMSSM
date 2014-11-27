@@ -12,6 +12,7 @@ module ()
 module use -a /afs/desy.de/group/cms/modulefiles/
 module use -a /etc/modulefiles/
 module load root/5.34
+$ROOTSYS/bin/root-config --version || exit 666
 
 # variables used for job distribution
 export MYPROJECT=UHHpMSSM
