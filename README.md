@@ -8,6 +8,17 @@ naf-helpdesk__AT__desy.de
 
 ## News
 
+### 8 Jan 14: update grid-control to 'stable-fixes'
+
+in order to get rid of the issue that many jobs land on slc5 machines and crahs,
+update grid-control as follows
+
+```
+cd $HOME/UHHpMSSM
+git pull
+source setup_fix_grid-control.sh
+```
+
 ### 27 Nov 14: add Denis' script to apply hadd on the content of the subdirectories of a given directory
 
 ```
