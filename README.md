@@ -19,65 +19,6 @@ git pull
 source setup_fix_grid-control.sh
 ```
 
-### 27 Nov 14: add Denis' script to apply hadd on the content of the subdirectories of a given directory
-
-```
-cd $HOME/UHHpMSSM/software/anascripts
-git pull
-```
-see "how to merge histograms per sample"
-
-
-### 27 Nov 14: add drawHist tools to the path
-
-```
-cd $HOME/UHHpMSSM/
-git pull
-source setenv.sh
-```
-
-Now all drawHist tools (drawHist.py, weightHist.py) are available in whatever directory you are
-
-### 27 Nov 14: Allow grid-control to recognise failures during the setup of the root environment
-
-```
-cd $HOME/UHHpMSSM/
-git pull
-```
-
-The environment setup will now crash with exit code 666 if the root environment could not be set correctly.
-
-### 27 Nov 14: fix to previous news item
-
-```
-cd $HOME/UHHpMSSM/software/anascripts
-git pull
-```
-
-### 14 Nov 14: pull in the ability to generate signal events for multiple slha files over naf
-
-```
-cd $HOME/UHHpMSSM
-git pull
-cd analyzers
-source makeGenSignal.sh
-updatefilelist.py
-```
-
-The way to run genSimSignal_*TeV.sh has slightly changed,
-see section "Generating and simulating events"
-
-Learn how to use the new tools in the section "Generating and simulating events"
-
-### 12 Nov 14: fix the pythia installation
-
-fix the pythia installation
-```
-cd $HOME/UHHpMSSM
-git pull
-source setup_fixpythia8.sh
-```
-
 ## Disclaimer
 
 Probably not all of this works as expected.
@@ -336,7 +277,11 @@ if git push leads to an error like
 ```
 error: The requested URL returned error: 403 Forbidden while accessing
 ```
-edit the git configuration
+
+first create and register a public ssh key as explained here:
+https://help.github.com/articles/generating-ssh-keys/#step-1-check-for-ssh-keys
+
+then edit the git configuration
 ```
 cd $MYPROJECTDIR
 emacs -nw .git/config
@@ -360,7 +305,66 @@ In the script to be run by grid-control.
 Will cause an error to be trown with code 666 in case YourCommand fails.
 Grid-control will recognise this error and flag the job as unsuccessful.
 
+## Old News
 
+### 27 Nov 14: add Denis' script to apply hadd on the content of the subdirectories of a given directory
+
+```
+cd $HOME/UHHpMSSM/software/anascripts
+git pull
+```
+see "how to merge histograms per sample"
+
+
+### 27 Nov 14: add drawHist tools to the path
+
+```
+cd $HOME/UHHpMSSM/
+git pull
+source setenv.sh
+```
+
+Now all drawHist tools (drawHist.py, weightHist.py) are available in whatever directory you are
+
+### 27 Nov 14: Allow grid-control to recognise failures during the setup of the root environment
+
+```
+cd $HOME/UHHpMSSM/
+git pull
+```
+
+The environment setup will now crash with exit code 666 if the root environment could not be set correctly.
+
+### 27 Nov 14: fix to previous news item
+
+```
+cd $HOME/UHHpMSSM/software/anascripts
+git pull
+```
+
+### 14 Nov 14: pull in the ability to generate signal events for multiple slha files over naf
+
+```
+cd $HOME/UHHpMSSM
+git pull
+cd analyzers
+source makeGenSignal.sh
+updatefilelist.py
+```
+
+The way to run genSimSignal_*TeV.sh has slightly changed,
+see section "Generating and simulating events"
+
+Learn how to use the new tools in the section "Generating and simulating events"
+
+### 12 Nov 14: fix the pythia installation
+
+fix the pythia installation
+```
+cd $HOME/UHHpMSSM
+git pull
+source setup_fixpythia8.sh
+```
 
 
 
